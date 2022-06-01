@@ -2,9 +2,8 @@
 # https://www.youtube.com/watch?v=4ssigWmExak
 # pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 
-from __future__ import print_function
-from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
+from google.oauth2 import service_account
 
 
 from google.oauth2 import service_account
@@ -22,9 +21,9 @@ SAMPLE_RANGE_NAME = "Sheet1!A1"
 service = build('sheets', 'v4', credentials=creds)
 
 # Call the Sheets API
-sheet = service.spreadsheets()
-result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,range=SAMPLE_RANGE_NAME).execute()
-pprint(result)
+# sheet = service.spreadsheets()
+# result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,range=SAMPLE_RANGE_NAME).execute()
+# print(result)
 message = [["hello world"]]
 request = service.spreadsheets().values().append(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME, valueInputOption="raw", insertDataOption="INSERT_ROWS", body={"values":message})
 response = request.execute()
