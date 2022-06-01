@@ -17,12 +17,16 @@ credentials = service_account.Credentials.from_service_account_file(
         
 # The ID and range of a sample spreadsheet.
 SAMPLE_SPREADSHEET_ID = '1hY6-iAXLCjycgzqewua6XAD9Ca-eq-MFnybWQrr9-O4'
+SAMPLE_RANGE_NAME = "Sheet1!A1"
 
 service = build('sheets', 'v4', credentials=creds)
 
 # Call the Sheets API
 sheet = service.spreadsheets()
 result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,range=SAMPLE_RANGE_NAME).execute()
-print(result)
+pprint(result)
+message = [["hello world"]]
+request = service.spreadsheets().values().append(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME, valueInputOption="raw", insertDataOption="INSERT_ROWS", body={"values":message})
+response = request.execute()
 
 
