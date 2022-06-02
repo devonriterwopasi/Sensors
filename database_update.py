@@ -10,7 +10,7 @@ SERVICE_ACCOUNT_FILE = 'keys.json'
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
 creds = None
-credentials = service_account.Credentials.from_service_account_file(
+creds = service_account.Credentials.from_service_account_file(
         SERVICE_ACCOUNT_FILE, scopes=SCOPES)
         
 # The ID and range of a sample spreadsheet.
@@ -24,7 +24,6 @@ service = build('sheets', 'v4', credentials=creds)
 # result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,range=SAMPLE_RANGE_NAME).execute()
 # print(result)
 message = [["hello world"]]
-request = service.spreadsheets().values().append(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME, valueInputOption="raw", insertDataOption="INSERT_ROWS", body={"values":message})
+request = service.spreadsheets().values().append(spreadsheetId=SAMPLE_SPREADSHEET_ID,
+                                                 range=SAMPLE_RANGE_NAME, valueInputOption="RAW", insertDataOption="INSERT_ROWS", body={"values":message})
 response = request.execute()
-
-
