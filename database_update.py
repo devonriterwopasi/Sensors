@@ -3,10 +3,9 @@
 # pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 
 from googleapiclient.discovery import build
+from google.oauth2.credentials import Credentials
 from google.oauth2 import service_account
 
-
-from google.oauth2 import service_account
 SERVICE_ACCOUNT_FILE = 'keys.json'
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
